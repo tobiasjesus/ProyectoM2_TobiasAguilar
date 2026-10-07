@@ -6,7 +6,7 @@ info:
 servers:
   - url: /
     description: Servidor actual (local o Railway)
-  - url: https://TU-URL
+  - url: https://proyectom2tobiasaguilar-production.up.railway.app
     description: Producción (Railway)
   - url: http://localhost:3000
     description: Local
