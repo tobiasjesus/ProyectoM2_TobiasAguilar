@@ -4,6 +4,10 @@ info:
   version: 1.0.0
   description: API REST para gestionar authors y posts (Node.js + Express + PostgreSQL).
 servers:
+  - url: /
+    description: Servidor actual (local o Railway)
+  - url: https://TU-URL
+    description: Producción (Railway)
   - url: http://localhost:3000
     description: Local
 
