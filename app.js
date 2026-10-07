@@ -3,17 +3,21 @@ const pool = require('./db/config');
 const authorsRouter = require('./routes/authors');
 const postsRouter = require('./routes/posts');
 const errorHandler = require('./middlewares/errorHandler');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+
+const swaggerDocument = YAML.load('./openapi.yaml');
 
 const app = express();
 
 app.use(express.json());
 app.use('/authors', authorsRouter);
 app.use('/posts', postsRouter);
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get('/', (req, res) => {
   res.json({
     message: 'MiniBlog API',
-    endpoints: { authors: '/authors', posts: '/posts' },
+    endpoints: { authors: '/authors', posts: '/posts', docs: '/api-docs' },
   });
 });
 
