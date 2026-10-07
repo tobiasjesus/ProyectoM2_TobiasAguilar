@@ -1,7 +1,7 @@
 function validateId(req, res, next) {
   for (const value of Object.values(req.params)) {
     const id = Number(value);
-    if (!Number.isInteger(id) || id <= 0) {
+    if (!Number.isInteger(id) || id <= 0 || id > 2147483647) {
       return res.status(400).json({ error: 'El id debe ser un número entero positivo' });
     }
   }

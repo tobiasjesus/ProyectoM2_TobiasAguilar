@@ -44,6 +44,11 @@ describe('Authors API', () => {
     expect(res.status).toBe(400);
   });
 
+   it('GET /authors/:id devuelve 400 si el id excede el rango de INTEGER', async () => {
+    const res = await request(app).get('/authors/99999999999');
+    expect(res.status).toBe(400);
+  });
+
   it('POST /authors crea un author y devuelve 201', async () => {
     const res = await request(app)
       .post('/authors')
