@@ -198,8 +198,8 @@ npm test             # ejecuta todos los tests una vez
 npm run test:watch   # modo watch
 ```
 
-- **16 tests** con Vitest + Supertest (8 de authors y 8 de posts) que prueban los endpoints HTTP contra la base de datos real.
-- Cubren casos exitosos (listar, obtener, crear, actualizar y eliminar) y casos de error (400 por datos o id inválidos, 404 por recurso inexistente, 409 por email duplicado, 400 por `author_id` inexistente).
+- **17 tests** con Vitest + Supertest (9 de authors y 8 de posts) que prueban los endpoints HTTP contra la base de datos real.
+- Cubren casos exitosos (listar, obtener, crear, actualizar y eliminar) y casos de error (400 por datos o id inválidos o fuera de rango, 404 por recurso inexistente, 409 por email duplicado, 400 por `author_id` inexistente).
 - Requieren la base local configurada en `.env`. Cada archivo de test **crea sus propios datos** en `beforeAll` y **los elimina** en `afterAll`, por lo que no modifican los datos del seed.
 
 ## Documentación OpenAPI
@@ -293,7 +293,7 @@ Al comenzar le pedí a la IA que actuara como tutor, no como alguien que resolvi
 | Base de datos | Explicó PK, FK, constraints, `ON DELETE CASCADE` e índices, y propuso los scripts | Escribí y ejecuté los scripts; probé a mano los constraints y el CASCADE en psql |
 | Servidor y CRUD | Explicó módulos, `async/await`, Pool, consultas parametrizadas y la separación routes/services; propuso el código | Escribí el código y probé todos los endpoints con Thunder Client |
 | Validaciones y errores | Explicó middlewares y el error handler, y propuso el código | Probé los casos de error y verifiqué que no se rompiera lo que ya funcionaba |
-| Tests | Escribió los 16 tests y explicó su estructura (`describe`, `it`, `expect`, `beforeAll`, `afterAll`) | Los ejecuté y los leí para entender qué prueba cada uno |
+| Tests | Escribió los 17 tests y explicó su estructura (`describe`, `it`, `expect`, `beforeAll`, `afterAll`) | Los ejecuté y los leí para entender qué prueba cada uno |
 | OpenAPI | Generó y validó `openapi.yaml` | Monté Swagger UI y lo probé en local y en producción |
 | Deploy | Me guió en Railway (variables, URL interna y pública, red pública) | Hice el deploy, configuré las variables y saqué las capturas |
 | README | Armó este borrador | Lo revisé, corregí y escribí la reflexión |
