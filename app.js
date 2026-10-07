@@ -1,9 +1,11 @@
 const express = require('express');
 const pool = require('./db/config');
+const authorsRouter = require('./routes/authors');
 
 const app = express();
 
 app.use(express.json());
+app.use('/authors', authorsRouter);
 
 app.get('/', (req, res) => {
   res.json({
