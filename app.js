@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('./db/config');
 const authorsRouter = require('./routes/authors');
 const postsRouter = require('./routes/posts');
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 
@@ -20,5 +21,11 @@ app.get('/health', async (req, res) => {
   const result = await pool.query('SELECT NOW()');
   res.json({ status: 'ok', db_time: result.rows[0].now });
 });
+
+app.use((req, res) => {
+  res.status(404).json({ error: 'Ruta no encontrada' });
+});
+
+app.use(errorHandler);
 
 module.exports = app;

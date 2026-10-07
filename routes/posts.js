@@ -8,6 +8,7 @@ const {
   deletePost,
 } = require('../services/postsService');
 const { getAuthorById } = require('../services/authorsService');
+const { validateId, validatePost } = require('../middlewares/validators');
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/author/:authorId', async (req, res, next) => {
+router.get('/author/:authorId', validateId, async (req, res, next) => {
   try {
     const author = await getAuthorById(req.params.authorId);
     if (!author) {
@@ -33,7 +34,7 @@ router.get('/author/:authorId', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', validateId, async (req, res, next) => {
   try {
     const post = await getPostById(req.params.id);
     if (!post) {
@@ -45,7 +46,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validatePost, async (req, res, next) => {
   try {
     const post = await createPost(req.body);
     res.status(201).json(post);
@@ -66,7 +67,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', validateId, async (req, res, next) => {
   try {
     const deleted = await deletePost(req.params.id);
     if (!deleted) {
